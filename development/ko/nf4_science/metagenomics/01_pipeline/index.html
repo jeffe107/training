@@ -2905,13 +2905,18 @@ For this course, we propose to wrap with Nextflow the protocol published by <a h
 </div>
 <p>As you can see from the picture, the pipeline will undergo as follows:</p>
 <ol>
-<li>The input is <strong>FASTQ</strong> files from one or multiple samples. For this course, we will be using only paired-end reads recovered from an oligotrophic, phosphorus-deficient pond in Cuatro Ciénegas, Mexico (<a href="https://elifesciences.org/articles/49816">Okie et al.,2020</a>); the BioProject accesion number is <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB22811">PRJEB22811</a>.</li>
-<li><strong>Host removal</strong> with <a href="https://bowtie-bio.sourceforge.net/bowtie2/manual.shtml"><strong>Bowtie2</strong></a> by aligning the reads against an indexed reference genome. In this case, we are using the indexed genome of yeast given the storage limitations we have in this codespace, although you can use any organism of your interest by building <a href="https://www.metagenomics.wiki/tools/bowtie2/index">your own index</a> or downloading a <a href="https://benlangmead.github.io/aws-indexes/bowtie">precomputed</a> one.</li>
-<li><strong>Taxonomic classification</strong> with <a href="https://ccb.jhu.edu/software/kraken2/"><strong>Kraken2</strong></a>. This tools relies on a indexed database that can be <a href="https://benlangmead.github.io/aws-indexes/k2">downloaded</a> or you can build your customized version following specific <a href="https://avilpage.com/2024/07/mastering-kraken2-build-custom-db.html">instructions</a>. We will be using the Viral database given the storage limitations (I know, it's a bit annoying), therefore this methodology is pointing at "viral metagenomics"; however, by just switching to any other database you can analyze your samples to annotate bacteria, archaea and more.</li>
-<li><strong>Bayesian species abundance re-estimation</strong> with <a href="https://ccb.jhu.edu/software/bracken/index.shtml?t=manual"><strong>Bracken</strong></a>. This software is designed to compute species abundance using Kraken classification results as stated in the reference paper, and it also uses some files contained in the dabatase folders such as the kmer distribution files (don't worry about this now, you can learn about how the method works afterwards).</li>
+<li>The input is <strong>FASTQ</strong> files from one or multiple samples.
+   For this course, we will be using only paired-end reads recovered from an oligotrophic, phosphorus-deficient pond in Cuatro Ciénegas, Mexico (<a href="https://elifesciences.org/articles/49816">Okie et al.,2020</a>); the BioProject accesion number is <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB22811">PRJEB22811</a>.</li>
+<li><strong>Host removal</strong> with <a href="https://bowtie-bio.sourceforge.net/bowtie2/manual.shtml"><strong>Bowtie2</strong></a> by aligning the reads against an indexed reference genome.
+   In this case, we are using the indexed genome of yeast given the storage limitations we have in this codespace, although you can use any organism of your interest by building <a href="https://www.metagenomics.wiki/tools/bowtie2/index">your own index</a> or downloading a <a href="https://benlangmead.github.io/aws-indexes/bowtie">precomputed</a> one.</li>
+<li><strong>Taxonomic classification</strong> with <a href="https://ccb.jhu.edu/software/kraken2/"><strong>Kraken2</strong></a>. This tools relies on a indexed database that can be <a href="https://benlangmead.github.io/aws-indexes/k2">downloaded</a> or you can build your customized version following specific <a href="https://avilpage.com/2024/07/mastering-kraken2-build-custom-db.html">instructions</a>.
+   We will be using the Viral database given the storage limitations (I know, it's a bit annoying), therefore this methodology is pointing at "viral metagenomics"; however, by just switching to any other database you can analyze your samples to annotate bacteria, archaea and more.</li>
+<li><strong>Bayesian species abundance re-estimation</strong> with <a href="https://ccb.jhu.edu/software/bracken/index.shtml?t=manual"><strong>Bracken</strong></a>.
+   This software is designed to compute species abundance using Kraken classification results as stated in the reference paper, and it also uses some files contained in the dabatase folders such as the kmer distribution files (don't worry about this now, you can learn about how the method works afterwards).</li>
 <li><a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-385"><strong>Krona</strong></a> plots are generated using the Bracken output to visualize interactively the relative abundance of each annotated species.</li>
 <li>If multiple samples are used as input to the pipeline, the bracken reports will be concatenated and converted into a Biological Observation Matrix (<a href="https://biom-format.org/"><strong>BIOM</strong></a>) file.</li>
-<li>Finally, the BIOM file will be first converted in a <a href="https://joey711.github.io/phyloseq/index.html"><strong>Phyloseq</strong></a> object, and this object will be further processed to generate absolute plots, estimate both α and β-diversity and perform a network analysis; this information will be presented in a final <code>report.html</code>. If you can to follow the code to generate the plots and metrics, you can check this Phyloseq <a href="https://vaulot.github.io/tutorials/Phyloseq_tutorial.html">tutorial</a>. </li>
+<li>Finally, the BIOM file will be first converted in a <a href="https://joey711.github.io/phyloseq/index.html"><strong>Phyloseq</strong></a> object, and this object will be further processed to generate absolute plots, estimate both α and β-diversity and perform a network analysis; this information will be presented in a final <code>report.html</code>.
+    If you can to follow the code to generate the plots and metrics, you can check this Phyloseq <a href="https://vaulot.github.io/tutorials/Phyloseq_tutorial.html">tutorial</a>. </li>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2921,7 +2926,8 @@ For this course, we propose to wrap with Nextflow the protocol published by <a h
 <h2 id="2-modules">2. Modules<a class="headerlink" href="#2-modules" title="Permanent link">&para;</a></h2>
 <p>Once we have a clear overview of what we want to achieve, we can start developing the modules that are going to perform each task; you can think of them as building blocks that we can stack up to construct a big tower (this is valid for this pipeline as it is linear).</p>
 <h3 id="21-bowtie2">2.1 Bowtie2<a class="headerlink" href="#21-bowtie2" title="Permanent link">&para;</a></h3>
-<p>As previously mentioned, the objective with this module is to clean the reads by aligning them against a reference genome to remove the ones that map with it. Let's create then the <code>bowtie2.nf</code> file inside the <strong>modules</strong> folder to write the following code:</p>
+<p>As previously mentioned, the objective with this module is to clean the reads by aligning them against a reference genome to remove the ones that map with it.
+Let's create then the <code>bowtie2.nf</code> file inside the <strong>modules</strong> folder to write the following code:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">modules/bowtie2.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -2962,14 +2968,19 @@ For this course, we propose to wrap with Nextflow the protocol published by <a h
 <ul>
 <li>The process name is <code>BOWTIE2</code>, this is important when creating the workflow file.</li>
 <li>The <code>tag</code> directive is used to indicate which sample is being processed at a determined moment. This will be useful when running the pipeline.</li>
-<li><code>publishDir</code> points out to the directory where the ouput is stored. In this case we are taking the path from the parameters, and within it subfolders with the sample namse will be created to store each <code>.sam</code> file, creating a copy of such files.</li>
-<li><code>container</code> indicates the docker container on which the process will be run. We have retrieved all the containers from <a href="https://seqera.io/containers/">Seqera Containers</a>. More information about how containers work can be found in the part 1 of the <a href="../rnaseq">RNASeq course</a>.</li>
+<li><code>publishDir</code> points out to the directory where the ouput is stored.
+  In this case we are taking the path from the parameters, and within it subfolders with the sample namse will be created to store each <code>.sam</code> file, creating a copy of such files.</li>
+<li><code>container</code> indicates the docker container on which the process will be run.
+  We have retrieved all the containers from <a href="https://seqera.io/containers/">Seqera Containers</a>.
+  More information about how containers work can be found in the part 1 of the <a href="../rnaseq">RNASeq course</a>.</li>
 <li>The <code>input</code> for this process will be the <code>sample id</code>, the paired-end <code>reads</code>, as well as the path to the <code>bowtie index</code>. More about this when creating the <code>main.nf</code> file.</li>
-<li>This process will produce a tuple containing the <code>sample id</code>, the path to the cleaned <code>reads</code> and the path to the <code>*.sam</code> file. This former file contains basically the overall information about the alignment of the sequences against the reference indexed genome; to learn more about this format, please check this <a href="https://samtools.github.io/hts-specs/SAMv1.pdf">material</a>.</li>
+<li>This process will produce a tuple containing the <code>sample id</code>, the path to the cleaned <code>reads</code> and the path to the <code>*.sam</code> file.
+  This former file contains basically the overall information about the alignment of the sequences against the reference indexed genome; to learn more about this format, please check this <a href="https://samtools.github.io/hts-specs/SAMv1.pdf">material</a>.</li>
 <li>Finally, the <code>script</code> statement contains two commands: <em>i)</em> an environment variable is exported pointing to the directory where the indexed genome is stored (this is required by Bowtie2 for some reason, don't worry about it, just keep in mind if you plan to use another reference genome though); and <em>ii)</em> the Bowtie2 command that includes again the path to the indexed genome, <code>-1</code> and <code>-2</code> capture the path to forward and reverse reads, respectively, <code>-S</code> provides the information about the desired format output, and <code>--un-conc-gz</code> is used to write the paired-end that fail to align concordantly to the reference genome (if this former parameter does not make sense to you, don't worry it took me a week to understand what it means, just check the <a href="https://bowtie-bio.sourceforge.net/bowtie2/manual.shtml">Bowtie2</a> manual 😉).</li>
 </ul>
 <h3 id="22-kraken2">2.2 Kraken2<a class="headerlink" href="#22-kraken2" title="Permanent link">&para;</a></h3>
-<p>Now, let's create the module for our taxonomic classifier. Following the Bowtie2 process, we are going to create <code>kraken2.nf</code> file inside the <strong>modules</strong> folder to write this code:</p>
+<p>Now, let's create the module for our taxonomic classifier.
+Following the Bowtie2 process, we are going to create <code>kraken2.nf</code> file inside the <strong>modules</strong> folder to write this code:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">modules/kraken2.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
@@ -3016,7 +3027,10 @@ For this course, we propose to wrap with Nextflow the protocol published by <a h
 <a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="s2">	&quot;&quot;&quot;</span>
 <a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="o">}</span>
 </code></pre></div></td></tr></table></div>
-<p>At a first glimpse, you can see that it follows the same structure as the previous process. The directives <code>tag</code>, <code>publishDir</code> and <code>container</code> play the same role as in Bowtie2, the <code>input</code> in this case is a tuple containing the <code>sample id</code>, the cleaned reads and the <code>*.sam</code> file (this one is declared just to maintain the correspondence between the output from Bowtie2 and the Kraken2 input). Also, the path to the kraken database is declared; more about this when writing the <code>main.nf</code> file. The output from this process will be a tuple containing the <code>sample id</code>, the path to the <code>.k2report</code> file, as well as the path to the <code>.kraken2</code> file. </p>
+<p>At a first glimpse, you can see that it follows the same structure as the previous process.
+The directives <code>tag</code>, <code>publishDir</code> and <code>container</code> play the same role as in Bowtie2, the <code>input</code> in this case is a tuple containing the <code>sample id</code>, the cleaned reads and the <code>*.sam</code> file (this one is declared just to maintain the correspondence between the output from Bowtie2 and the Kraken2 input).
+Also, the path to the kraken database is declared; more about this when writing the <code>main.nf</code> file.
+The output from this process will be a tuple containing the <code>sample id</code>, the path to the <code>.k2report</code> file, as well as the path to the <code>.kraken2</code> file. </p>
 <p>The <code>script</code> statement will run the Kraken2 command along with a series of flags that include the path to the database, the number of threads to use, the path to the reports Kraken2 generates, the minimum number of 'hit groups' needed to make a classification call, the flag to report the minimizers and distinct minimizer count, the parameters that indicate that the received reads are paired-end and compressed in a <em>.gz</em> format. You are strongly encouraged to check both the <a href="https://www.nature.com/articles/s41596-022-00738-y">protocol</a> that documents this methodology, as well as the <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0">source publication</a> to understand how Kraken2 works and the type of files it generates; this <a href="https://homolog.us/blogs/bioinfo/2017/10/25/intro-minimizer/">article</a> about minimimzers is also useful.</p>
 <h3 id="23-bracken">2.3 Bracken<a class="headerlink" href="#23-bracken" title="Permanent link">&para;</a></h3>
 <p>Following the same procedure as with the two previous processes, let's create the file <code>bracken.nf</code> inside <strong>modules</strong>:</p>
@@ -3060,11 +3074,14 @@ For this course, we propose to wrap with Nextflow the protocol published by <a h
 <a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="s2">	&quot;&quot;&quot;</span>
 <a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="o">}</span>
 </code></pre></div></td></tr></table></div>
-<p>For this and the following process, we will focused only on the features that differ from the Bowtie2 and Kraken2 explanations. As expected, the declared <code>input</code> for this Bracken process matches the output generated by Kraken2, receiving a tuple containing the <code>sample id</code> and the paths to <code>.k2report</code> and <code>kraken2</code> reports. </p>
+<p>For this and the following process, we will focused only on the features that differ from the Bowtie2 and Kraken2 explanations.
+As expected, the declared <code>input</code> for this Bracken process matches the output generated by Kraken2, receiving a tuple containing the <code>sample id</code> and the paths to <code>.k2report</code> and <code>kraken2</code> reports. </p>
 <p>Similarly, the <code>output</code> establishes that this process will generate a tuple with the <code>sample id</code> and the two types of <code>reports</code> Bracken produces; more information about these reports can be found at the GitHub <a href="https://github.com/jenniferlu717/Bracken">repository</a>. </p>
 <p>The <code>script</code> statement runs Bracken specifying the path to the database, the input represented by the Kraken2 report, the length of the reads, the taxonomic level at which we want to re-estimate the abundance (species in this case), the required number of reads before abundance estimation to perform re-estimation, and the format for the reports afore-mentioned.</p>
 <h3 id="24-krona">2.4 Krona<a class="headerlink" href="#24-krona" title="Permanent link">&para;</a></h3>
-<p>To generate the Krona plots (this interactive pie charts especially common in the metagenomics field), we will need 2 processes. The first one is going to execute the script <code>kreport2krona.py</code>, provided as part of <a href="https://github.com/jenniferlu717/KrakenTools">KrakenTools</a>, using the Bracken report as input to produce a plain text file that contains the species abundance information. Let's create the file <code>kReport2Krona.nf</code> inside <strong>modules</strong>, and introduce the following code:</p>
+<p>To generate the Krona plots (this interactive pie charts especially common in the metagenomics field), we will need 2 processes.
+The first one is going to execute the script <code>kreport2krona.py</code>, provided as part of <a href="https://github.com/jenniferlu717/KrakenTools">KrakenTools</a>, using the Bracken report as input to produce a plain text file that contains the species abundance information.
+Let's create the file <code>kReport2Krona.nf</code> inside <strong>modules</strong>, and introduce the following code:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">modules/kReport2Krona.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
@@ -3101,8 +3118,10 @@ For this course, we propose to wrap with Nextflow the protocol published by <a h
 <a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="s2">	&quot;&quot;&quot;</span>
 <a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="o">}</span>
 </code></pre></div></td></tr></table></div>
-<p>As seen before, this process is taking as input the exact output from Bracken in a tuple form, and it is going to generate another tuple containing <code>sample id</code> and the <code>*.txt</code> file with the abundance numbers. Within the <code>script</code> execution an additional flag that indicates leaving out non-traditional ranks.</p>
-<p>Now, the following process will use the plain <code>*.txt</code> to render the Krona plot in a self-contained <code>*.html</code> file. I guess that by this point you already what is coming: let's create the file <code>ktImportText.nf</code> inside <strong>modules</strong>, and write the code:</p>
+<p>As seen before, this process is taking as input the exact output from Bracken in a tuple form, and it is going to generate another tuple containing <code>sample id</code> and the <code>*.txt</code> file with the abundance numbers.
+Within the <code>script</code> execution an additional flag that indicates leaving out non-traditional ranks.</p>
+<p>Now, the following process will use the plain <code>*.txt</code> to render the Krona plot in a self-contained <code>*.html</code> file.
+I guess that by this point you already what is coming: let's create the file <code>ktImportText.nf</code> inside <strong>modules</strong>, and write the code:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">modules/ktImportText.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
@@ -3137,10 +3156,14 @@ For this course, we propose to wrap with Nextflow the protocol published by <a h
 <a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="s2">	&quot;&quot;&quot;</span>
 <a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="o">}</span>
 </code></pre></div></td></tr></table></div>
-<p>The only output from this process will be the Krona plot that can be directly opened using a regular modern browser, just like the one you are using to follow this tutorial. With this process, the execution of the pipeline for a single sample is finished, we can proceed then to create the files that control the execution of the pipeline.</p>
+<p>The only output from this process will be the Krona plot that can be directly opened using a regular modern browser, just like the one you are using to follow this tutorial.
+With this process, the execution of the pipeline for a single sample is finished, we can proceed then to create the files that control the execution of the pipeline.</p>
 <hr />
 <h2 id="3-workflownf">3. <code>workflow.nf</code><a class="headerlink" href="#3-workflownf" title="Permanent link">&para;</a></h2>
-<p>We are going to leverage the <a href="../../../side_quests/workflows_of_workflows/"><code>Workflows of Workflows</code></a> Side Quest to create the file <code>workflow.nf</code>, and we are going to use the <code>take/main</code> syntax. Here, inputs are declared using the keyword <code>take</code>, and workflow content is placed inside <code>main</code>. Now it is time to explicitly write where the processes files can be found, as well as the order of execution of the processes. In the file <code>workflow.nf</code> (no, this time it does not go inside the <strong>modules</strong> directory), we include the following:</p>
+<p>We are going to leverage the <a href="../../../side_quests/workflows_of_workflows/"><code>Workflows of Workflows</code></a> Side Quest to create the file <code>workflow.nf</code>, and we are going to use the <code>take/main</code> syntax.
+Here, inputs are declared using the keyword <code>take</code>, and workflow content is placed inside <code>main</code>.
+Now it is time to explicitly write where the processes files can be found, as well as the order of execution of the processes.
+In the file <code>workflow.nf</code> (no, this time it does not go inside the <strong>modules</strong> directory), we include the following:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">workflow.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
 <span class="normal"><a href="#__codelineno-5-2">2</a></span>
 <span class="normal"><a href="#__codelineno-5-3">3</a></span>
@@ -3157,7 +3180,8 @@ For this course, we propose to wrap with Nextflow the protocol published by <a h
 <a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="n">include</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">K_REPORT_TO_KRONA</span><span class="w"> 	        </span><span class="o">}</span><span class="w"> 	</span><span class="n">from</span><span class="w"> </span><span class="s1">&#39;./modules/kReport2Krona.nf&#39;</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="n">include</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">KT_IMPORT_TEXT</span><span class="w"> 	        </span><span class="o">}</span><span class="w"> 	</span><span class="n">from</span><span class="w"> </span><span class="s1">&#39;./modules/ktImportText.nf&#39;</span>
 </code></pre></div></td></tr></table></div>
-<p>This way of importing process is composed by two parts, the first one invokes the name of the process inside the curly brackets (please not that they should match exactly with given names in the corresponding files), and the second one points out to the relative path where the files are located. Now, let's write what are the primary input for the workflow and the order of execution of the processes:</p>
+<p>This way of importing process is composed by two parts, the first one invokes the name of the process inside the curly brackets (please not that they should match exactly with given names in the corresponding files), and the second one points out to the relative path where the files are located.
+Now, let's write what are the primary input for the workflow and the order of execution of the processes:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">workflow.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-10">10</a></span>
 <span class="normal"><a href="#__codelineno-6-11">11</a></span>
 <span class="normal"><a href="#__codelineno-6-12">12</a></span>
@@ -3192,7 +3216,8 @@ For this course, we propose to wrap with Nextflow the protocol published by <a h
 <a id="__codelineno-6-25" name="__codelineno-6-25"></a><span class="w">		</span><span class="n">K_REPORT_TO_KRONA</span><span class="o">(</span><span class="n">BRACKEN</span><span class="o">.</span><span class="na">out</span><span class="o">)</span>
 <a id="__codelineno-6-26" name="__codelineno-6-26"></a><span class="w">		</span><span class="n">KT_IMPORT_TEXT</span><span class="o">(</span><span class="n">K_REPORT_TO_KRONA</span><span class="o">.</span><span class="na">out</span><span class="o">)</span>
 </code></pre></div></td></tr></table></div>
-<p>In this declaration you see that we need three primary inputs for the pipeline: the indexed reference genome for Bowtie2, the indexed database for Kraken2 and Bracken, and the paths to the reads; when creating the <code>nextflow.config</code>, you will see how to specify these paths. In the block <code>main</code>, you see the names of the processes with one or more parameters inside the parenthesis depicting the exact data flow:</p>
+<p>In this declaration you see that we need three primary inputs for the pipeline: the indexed reference genome for Bowtie2, the indexed database for Kraken2 and Bracken, and the paths to the reads; when creating the <code>nextflow.config</code>, you will see how to specify these paths.
+In the block <code>main</code>, you see the names of the processes with one or more parameters inside the parenthesis depicting the exact data flow:</p>
 <ol>
 <li><code>BOWTIE2(reads_ch, bowtie2_index)</code> will be the first executed process using the reads and the indexed genome; the other processes must wait until this one is finished.</li>
 <li>Once <code>BOWTIE2</code> has completed the task, <code>KRAKEN2</code> will take the output, along with the database path to perform the specified task; the remaining process are on hold until Kraken2 is finished.</li>
@@ -3201,7 +3226,10 @@ For this course, we propose to wrap with Nextflow the protocol published by <a h
 </ol>
 <hr />
 <h2 id="4-mainnf">4. <code>main.nf</code><a class="headerlink" href="#4-mainnf" title="Permanent link">&para;</a></h2>
-<p>We are getting closer to run the pipeline, let's create the <code>main.nf</code> file. Within this file, we create banner with the pipeline name to be shown when the execution starts. <code>log.info</code> is a method call on a logging object, and it is used to write informational messages to the Nextflow log during a pipeline's execution. You can learn more about this <a href="https://carpentries-incubator.github.io/workflows-nextflow/11-Simple_Rna-Seq_pipeline.html#define-the-pipeline-parameters">here</a>. </p>
+<p>We are getting closer to run the pipeline, let's create the <code>main.nf</code> file.
+Within this file, we create banner with the pipeline name to be shown when the execution starts.
+<code>log.info</code> is a method call on a logging object, and it is used to write informational messages to the Nextflow log during a pipeline's execution.
+You can learn more about this <a href="https://carpentries-incubator.github.io/workflows-nextflow/11-Simple_Rna-Seq_pipeline.html#define-the-pipeline-parameters">here</a>. </p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">main.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
@@ -3329,7 +3357,9 @@ And you will see the following:</p>
 <a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="go">    ├── ERR2143768.krona.html</span>
 <a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="go">    └── ERR2143768.sam</span>
 </code></pre></div>
-<p>Feel free to explore each of the files to understand each process and how data were handled. The file in which we are more interested is the <code>*.html</code> since this is the Krona plot, and you can either download or install the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server">preview</a> extension for Visual Studio. Keep in mind that we used the viral database, therefore you will be seeing information only about the viruses contained in the samples, to perform the analysis with bacteria and beyond you have to download a different database or build your own.</p>
+<p>Feel free to explore each of the files to understand each process and how data were handled.
+The file in which we are more interested is the <code>*.html</code> since this is the Krona plot, and you can either download or install the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server">preview</a> extension for Visual Studio.
+Keep in mind that we used the viral database, therefore you will be seeing information only about the viruses contained in the samples, to perform the analysis with bacteria and beyond you have to download a different database or build your own.</p>
 <hr />
 <h3 id="takeaway">Takeaway<a class="headerlink" href="#takeaway" title="Permanent link">&para;</a></h3>
 <p>Congratulations! you just have performed a whole taxonomic annotation and abundance estimation of your metagenomics sample.</p>
