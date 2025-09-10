@@ -1797,14 +1797,20 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="2.2. Phyloseq">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#221-including-a-customized-script" class="md-nav__link">
     <span class="md-ellipsis">
-      2.2.1 Including a customized script
+      2.2.1. Including a customized script
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -3116,14 +3122,20 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="2.2. Phyloseq">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#221-including-a-customized-script" class="md-nav__link">
     <span class="md-ellipsis">
-      2.2.1 Including a customized script
+      2.2.1. Including a customized script
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -3509,7 +3521,7 @@ Being so, we will include these processes and modify the workflow execution to a
 This operator is going to return a list of the elements specified in the output of the process (<code>BRACKEN</code>), and, for instance, we are interested in each "second" (indices 1,4,7...) element of the list to run the <em>kraken-biom</em> command; this is the reason why within the <code>script</code> statement in <code>kraken_biom.nf</code> we have incluced two codelines to obtain the paths to these files.
 If this is not entirely clear, please check the <a href="https://www.nextflow.io/docs/latest/reference/operator.html#collect">Nextflow documentation</a>.</p>
 <h3 id="22-phyloseq">2.2. Phyloseq<a class="headerlink" href="#22-phyloseq" title="Permanent link">&para;</a></h3>
-<h3 id="221-including-a-customized-script">2.2.1 Including a customized script<a class="headerlink" href="#221-including-a-customized-script" title="Permanent link">&para;</a></h3>
+<h4 id="221-including-a-customized-script">2.2.1. Including a customized script<a class="headerlink" href="#221-including-a-customized-script" title="Permanent link">&para;</a></h4>
 <p>We are at the last step of the pipeline execution, and now we need to process the <code>*.biom</code> file by transforming it into a Phyloseq object, which is easier to use, more intuitive to understand, and is equipped with multiple tools and methods to plot.
 Another amazing feature by Nextflow is the possibility to run the so-called <em>Scripts à la carte</em>, which means that a process does not necessarily requires an external tool to execute, and hence you can develop your own analysis with customized scripts, i.e., R or Python.
 Here, we will run an R script inside the module <code>knit_phyloseq.nf</code> to create and process the Phyloseq object taking as input the ouput from <code>kraken_biom.nf</code>:</p>
