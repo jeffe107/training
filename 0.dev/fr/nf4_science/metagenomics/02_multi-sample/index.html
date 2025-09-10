@@ -1769,16 +1769,17 @@
           <li class="md-nav__item">
   <a href="#21-kraken-biom" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1 Kraken-biom
+      2.1. Kraken-biom
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="2.1. Kraken-biom">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#211-operator-collect-and-conditional-execution" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1.1 Operator collect() and conditional execution
+      2.1.1. Operator collect() and conditional execution
     </span>
   </a>
   
@@ -1787,15 +1788,16 @@
       </ul>
     </nav>
   
-</li>  <li class="md-nav__item">
+</li>
+        
+          <li class="md-nav__item">
   <a href="#22-phyloseq" class="md-nav__link">
     <span class="md-ellipsis">
-      2.2 Phyloseq
+      2.2. Phyloseq
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.2 Phyloseq">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#221-including-a-customized-script" class="md-nav__link">
@@ -3086,16 +3088,17 @@
           <li class="md-nav__item">
   <a href="#21-kraken-biom" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1 Kraken-biom
+      2.1. Kraken-biom
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="2.1. Kraken-biom">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#211-operator-collect-and-conditional-execution" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1.1 Operator collect() and conditional execution
+      2.1.1. Operator collect() and conditional execution
     </span>
   </a>
   
@@ -3104,15 +3107,16 @@
       </ul>
     </nav>
   
-</li>  <li class="md-nav__item">
+</li>
+        
+          <li class="md-nav__item">
   <a href="#22-phyloseq" class="md-nav__link">
     <span class="md-ellipsis">
-      2.2 Phyloseq
+      2.2. Phyloseq
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.2 Phyloseq">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#221-including-a-customized-script" class="md-nav__link">
@@ -3387,10 +3391,10 @@
 
 
 <h1 id="part-2-process-parallelization-and-multi-sample">Part 2: Process parallelization and multi-sample<a class="headerlink" href="#part-2-process-parallelization-and-multi-sample" title="Permanent link">&para;</a></h1>
-<p>In this part, we are going to rely on same pipeline structure we built in Part 1 to extend it for: </p>
+<p>In this part, we are going to rely on same pipeline structure we built in Part 1 to extend it for:</p>
 <ol>
 <li>Multi-sample analysis</li>
-<li>Use of a Nextflow operator </li>
+<li>Use of a Nextflow operator</li>
 <li>Control the execution of the workflow according to the input</li>
 <li>Include a process that runs a customized script</li>
 </ol>
@@ -3402,7 +3406,7 @@ You can think of this as a sort of "integrated <em>for</em> loop" that will proc
 <p>To achieve this purpose, there are two possibilities:</p>
 <ul>
 <li>The use of wildcards in the input (this can be tricky and requires to take into account particular folder structures).</li>
-<li>Create a file that points out to the sample files regardless of their location in the file system. </li>
+<li>Create a file that points out to the sample files regardless of their location in the file system.</li>
 </ul>
 <p>In this course, we will target the second input option, albeit you are welcome to explore how you can use the first option by checking the <a href="https://www.nextflow.io/docs/latest/working-with-files.html">Nextflow documentation</a>.</p>
 <p>To move forward, let's create then the file <code>samplesheet.csv</code> inside the folder <strong>data</strong>:</p>
@@ -3443,10 +3447,10 @@ Otherwise, we must include the parameter <code>--sheet_csv</code> with the corre
 Being so, it is necessary to use one of the two forms of input; if we use both at the same time, the <code>--reads</code> will predominate or if none of them is indicated, the pipeline will fail.
 Do not worry now for the way in which channel is created using the <code>.csv</code> file, this declaration is quite stantard and you can just copy and paste for other pipelines in which you would like to use it; however, you can learn more about this <a href="https://nextflow-io.github.io/patterns/process-per-csv-record/">here</a>.</p>
 <p>Now, we would be ready to re-run the pipeline to process all the samples in a single call.
-Notwithstanding, the inclusion of additional samples has the advantage that we can expand the analysis to estimate β-diversity and compare them to extract important insights. </p>
+Notwithstanding, the inclusion of additional samples has the advantage that we can expand the analysis to estimate β-diversity and compare them to extract important insights.</p>
 <hr />
 <h2 id="2-additional-processes">2. Additional processes<a class="headerlink" href="#2-additional-processes" title="Permanent link">&para;</a></h2>
-<h3 id="21-kraken-biom">2.1 Kraken-biom<a class="headerlink" href="#21-kraken-biom" title="Permanent link">&para;</a></h3>
+<h3 id="21-kraken-biom">2.1. Kraken-biom<a class="headerlink" href="#21-kraken-biom" title="Permanent link">&para;</a></h3>
 <p>Let's create a new module that is going to handle the Bracken output to produce a Biological Observation Matrix (BIOM) file that concatenates the species abundance in each sample.
 The <code>kraken_biom.nf</code> file will be located in the <strong>modules</strong> directory:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">modules/kraken_biom.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
@@ -3487,7 +3491,7 @@ The <code>kraken_biom.nf</code> file will be located in the <strong>modules</str
 </code></pre></div></td></tr></table></div>
 <p>This process will <em>collect</em> each output from the Bracken files to build a single <code>*.biom</code> file that contains the abundance species data of all the samples.
 In the <code>script</code> statement we find three tasks to execute, the first two lines are for variable manipulation required to handle the type of input this process receives (more about this when modifying <code>workflow.nf</code> below), and the second line executes the kraken-biom command that is available thanks to specified container.</p>
-<h3 id="211-operator-collect-and-conditional-execution">2.1.1 Operator <em>collect()</em> and conditional execution<a class="headerlink" href="#211-operator-collect-and-conditional-execution" title="Permanent link">&para;</a></h3>
+<h4 id="211-operator-collect-and-conditional-execution">2.1.1. Operator <em>collect()</em> and conditional execution<a class="headerlink" href="#211-operator-collect-and-conditional-execution" title="Permanent link">&para;</a></h4>
 <p>Nextflow provides a high number of operators that smooth data handling and orchestrates the workflow to do exactly what we want.
 In this case, the process <code>KRAKEN_BIOM</code> requires all the files produced by Bracken belonging to each sample, which means that <code>KRAKEN_BIOM</code> can not be triggered until all Bracken processes are finished.
 For this task, the operator <em>collect()</em> comes really handy, and therefore let's include it in our <code>workflow.nf</code>... but wait!
@@ -3503,8 +3507,8 @@ Being so, we will include these processes and modify the workflow execution to a
 </code></pre></div></td></tr></table></div>
 <p>Here, you can see that we have added the operator <em>collect()</em> to capture all the output files from <code>BRACKEN</code>, and this is happening only if we are using as input <code>--sheet_csv</code>.
 This operator is going to return a list of the elements specified in the output of the process (<code>BRACKEN</code>), and, for instance, we are interested in each "second" (indices 1,4,7...) element of the list to run the <em>kraken-biom</em> command; this is the reason why within the <code>script</code> statement in <code>kraken_biom.nf</code> we have incluced two codelines to obtain the paths to these files.
-If this is not entirely clear, please check the <a href="https://www.nextflow.io/docs/latest/reference/operator.html#collect">Nextflow documentation</a>.    </p>
-<h2 id="22-phyloseq">2.2 Phyloseq<a class="headerlink" href="#22-phyloseq" title="Permanent link">&para;</a></h2>
+If this is not entirely clear, please check the <a href="https://www.nextflow.io/docs/latest/reference/operator.html#collect">Nextflow documentation</a>.</p>
+<h3 id="22-phyloseq">2.2. Phyloseq<a class="headerlink" href="#22-phyloseq" title="Permanent link">&para;</a></h3>
 <h3 id="221-including-a-customized-script">2.2.1 Including a customized script<a class="headerlink" href="#221-including-a-customized-script" title="Permanent link">&para;</a></h3>
 <p>We are at the last step of the pipeline execution, and now we need to process the <code>*.biom</code> file by transforming it into a Phyloseq object, which is easier to use, more intuitive to understand, and is equipped with multiple tools and methods to plot.
 Another amazing feature by Nextflow is the possibility to run the so-called <em>Scripts à la carte</em>, which means that a process does not necessarily requires an external tool to execute, and hence you can develop your own analysis with customized scripts, i.e., R or Python.
@@ -3600,7 +3604,7 @@ Also, during while the pipeline is running you will see that <code>KRAKEN_BIOM</
 Likewise, in the <strong>output</strong> folder you will see the file <code>report.html</code> which is ready to be opened and explored. It's your time to analyze it!</p>
 <hr />
 <h3 id="takeaway">Takeaway<a class="headerlink" href="#takeaway" title="Permanent link">&para;</a></h3>
-<p>You just learnt how control workflow execution by including conditionals and operators, process multiple samples simultaneously and running a customized script to perform a metagenomics data analysis at read level. </p>
+<p>You just learnt how control workflow execution by including conditionals and operators, process multiple samples simultaneously and running a customized script to perform a metagenomics data analysis at read level.</p>
 <h3 id="whats-next">What's next?<a class="headerlink" href="#whats-next" title="Permanent link">&para;</a></h3>
 <p>Great! You are well equipped now to start developing your own pipelines.</p>
 
