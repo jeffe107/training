@@ -22,7 +22,7 @@
     
     
       
-        <title>Part 2: Process parallelization and multi-sample - training.nextflow.io</title>
+        <title>Part 3: Multi-sample analysis - training.nextflow.io</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#part-2-process-parallelization-and-multi-sample" class="md-skip">
+        <a href="#part-3-multi-sample-analysis" class="md-skip">
           Aller au contenu
         </a>
       
@@ -185,7 +185,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Part 2: Process parallelization and multi-sample
+              Part 3: Multi-sample analysis
             
           </span>
         </div>
@@ -1868,7 +1868,7 @@
   
   
   <span class="md-ellipsis">
-    Part 2: Single-sample implementation
+    Part 2: Single-sample analysis
     
   </span>
   
@@ -1900,7 +1900,7 @@
   
   
   <span class="md-ellipsis">
-    Part 2: Process parallelization and multi-sample
+    Part 3: Multi-sample analysis
     
   </span>
   
@@ -1913,7 +1913,7 @@
   
   
   <span class="md-ellipsis">
-    Part 2: Process parallelization and multi-sample
+    Part 3: Multi-sample analysis
     
   </span>
   
@@ -3935,17 +3935,17 @@
   
 
 
-<h1 id="part-2-process-parallelization-and-multi-sample">Part 2: Process parallelization and multi-sample<a class="headerlink" href="#part-2-process-parallelization-and-multi-sample" title="Permanent link">&para;</a></h1>
-<p>In this part, we are going to rely on same pipeline structure we built in Part 1 to extend it for:</p>
+<h1 id="part-3-multi-sample-analysis">Part 3: Multi-sample analysis<a class="headerlink" href="#part-3-multi-sample-analysis" title="Permanent link">&para;</a></h1>
+<p>In this part, we are going to start from the pipeline structure we built in the previous part and extend it for multi-sample analysis.</p>
+<p>This will give us the opportunity to practice using the following Nextflow features:</p>
 <ol>
-<li>Multi-sample analysis</li>
-<li>Use of a Nextflow operator</li>
-<li>Control the execution of the workflow according to the input</li>
-<li>Include a process that runs a customized script</li>
+<li>Using a Nextflow operator to control the flow of data</li>
+<li>Controlling the execution of modules according to an input condition</li>
+<li>Including a process that runs a customized script</li>
 </ol>
 <hr />
 <h2 id="1-multi-sample-input">1. Multi-sample input<a class="headerlink" href="#1-multi-sample-input" title="Permanent link">&para;</a></h2>
-<p>With our shining brand-new pipeline, we are at this moment able to analyze each sample individually by running the workflow multiple times.
+<p>With our shiny brand-new pipeline, we are at this moment able to analyze each sample individually by running the workflow multiple times.
 Nonetheless, one of the most powerful capabilities by Nextflow is its native parallel execution according to the available resources the executor finds.
 You can think of this as a sort of "integrated <em>for</em> loop" that will process all the samples in parallel in a single run without the need of re-running the pipeline.</p>
 <p>To achieve this purpose, there are two possibilities:</p>
@@ -3953,8 +3953,8 @@ You can think of this as a sort of "integrated <em>for</em> loop" that will proc
 <li>The use of wildcards in the input (this can be tricky and requires to take into account particular folder structures).</li>
 <li>Create a file that points out to the sample files regardless of their location in the file system.</li>
 </ul>
-<p>In this course, we will target the second input option, albeit you are welcome to explore how you can use the first option by checking the <a href="https://www.nextflow.io/docs/latest/working-with-files.html">Nextflow documentation</a>.</p>
-<p>To move forward, let's create then the file <code>samplesheet.csv</code> inside the folder <strong>data</strong>:</p>
+<p>In this course, we will target the second input option, but you are welcome to explore how you can use the first option by checking out the <a href="https://www.nextflow.io/docs/latest/working-with-files.html">Nextflow documentation</a>.</p>
+<p>To move forward, let's create the file <code>samplesheet.csv</code> inside the folder <code>data/</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">data/samplesheet.csv</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
 <span class="normal"><a href="#__codelineno-0-3">3</a></span>
@@ -3966,13 +3966,13 @@ You can think of this as a sort of "integrated <em>for</em> loop" that will proc
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a>ERR2143774,/workspaces/training/nf4-science/metagenomics/data/samples/ERR2143774/ERR2143774_1.fastq,/workspaces/training/nf4-science/metagenomics/data/samples/ERR2143774/ERR2143774_2.fastq
 </code></pre></div></td></tr></table></div>
 <p>Here, we have provided the <code>sample id</code> and the absolute paths to both forward and reverse reads per sample.
-Please notice that the files are not required to be stored in the directory; however, it is recommend to maintain a consistent folder structure.</p>
-<p>Now, we can not use this file as input in the current state of the pipeline given that it expects only a path to create a paire-end channel.
-Let's include then an additional parameter (we can use any name, feel creative!) in the <code>nextflow.config</code> file (notice that it would go inside the parameter block, keeping the same structure):</p>
+Please notice that the files are not required to be stored in the directory; however, this is recommended in order to maintain a consistent fodirectorylder structure.</p>
+<p>However, we cannot use this file as input in the current state of the pipeline, given that it expects only a path to create a paired-end channel.
+So let's include an additional parameter in the <code>nextflow.config</code> file (inside the parameter block, keeping the same structure):</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">nextflow.config</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">    </span><span class="n">sheet_csv</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
 </code></pre></div></td></tr></table></div>
-<p>We initialize this parameter as <code>null</code> since it can be used or not.
-Now, we need to modify the <code>main.nf</code> file to state how the input should be handled depending of the type of input:</p>
+<p>We initialize this parameter as <code>null</code> since it can be used or not.</p>
+<p>Now, we need to modify the <code>main.nf</code> file to state how the input should be handled depending on the type of input:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">main.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-22">22</a></span>
 <span class="normal"><a href="#__codelineno-2-23">23</a></span>
 <span class="normal"><a href="#__codelineno-2-24">24</a></span>
@@ -3988,16 +3988,16 @@ Now, we need to modify the <code>main.nf</code> file to state how the input shou
 <a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">		</span><span class="o">}</span>
 </code></pre></div></td></tr></table></div>
 <p>This modified declaration states that if we use the parameter <code>--reads</code> when we invoke the <code>nextflow run main.nf</code>, the <em>reads</em> channel will be created using only the path to paired-end files.
-Otherwise, we must include the parameter <code>--sheet_csv</code> with the corresponding file containing the sample information.
-Being so, it is necessary to use one of the two forms of input; if we use both at the same time, the <code>--reads</code> will predominate or if none of them is indicated, the pipeline will fail.
+Otherwise, we must include the parameter <code>--sheet_csv</code> with the corresponding file containing the sample information.</p>
+<p>Being so, it is necessary to use one of the two forms of input; if we use both at the same time, the <code>--reads</code> will predominate or if none of them is indicated, the pipeline will fail.
 Do not worry now for the way in which channel is created using the <code>.csv</code> file, this declaration is quite stantard and you can just copy and paste for other pipelines in which you would like to use it; however, you can learn more about this <a href="https://nextflow-io.github.io/patterns/process-per-csv-record/">here</a>.</p>
 <p>Now, we would be ready to re-run the pipeline to process all the samples in a single call.
 Notwithstanding, the inclusion of additional samples has the advantage that we can expand the analysis to estimate β-diversity and compare them to extract important insights.</p>
 <hr />
 <h2 id="2-additional-processes">2. Additional processes<a class="headerlink" href="#2-additional-processes" title="Permanent link">&para;</a></h2>
 <h3 id="21-kraken-biom">2.1. Kraken-biom<a class="headerlink" href="#21-kraken-biom" title="Permanent link">&para;</a></h3>
-<p>Let's create a new module that is going to handle the Bracken output to produce a Biological Observation Matrix (BIOM) file that concatenates the species abundance in each sample.
-The <code>kraken_biom.nf</code> file will be located in the <strong>modules</strong> directory:</p>
+<p>Let's create a new module that is going to handle the Bracken output to produce a Biological Observation Matrix (BIOM) file that concatenates the species abundance in each sample.</p>
+<p>The <code>kraken_biom.nf</code> file will be located in the <code>modules/</code> directory:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">modules/kraken_biom.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
@@ -4189,7 +4189,7 @@ Likewise, in the <strong>output</strong> folder you will see the file <code>repo
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../02_single-sample/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Part 2: Single-sample implementation">
+          <a href="../02_single-sample/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Part 2: Single-sample analysis">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4199,7 +4199,7 @@ Likewise, in the <strong>output</strong> folder you will see the file <code>repo
                 Précédent
               </span>
               <div class="md-ellipsis">
-                Part 2: Single-sample implementation
+                Part 2: Single-sample analysis
               </div>
             </div>
           </a>
