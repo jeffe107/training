@@ -1035,15 +1035,26 @@
         <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/01_pipeline/"/>
     </url>
     <url>
-        <loc>https://training.nextflow.io/0.dev/nf4_science/metagenomics/02_multi-sample/</loc>
+        <loc>https://training.nextflow.io/0.dev/nf4_science/metagenomics/02_single-sample/</loc>
         <lastmod>2025-11-04</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.dev/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/02_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.dev/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/02_single-sample/"/>
+    </url>
+    <url>
+        <loc>https://training.nextflow.io/0.dev/nf4_science/metagenomics/03_multi-sample/</loc>
+        <lastmod>2025-11-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.dev/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/03_multi-sample/"/>
     </url>
     <url>
         <loc>https://training.nextflow.io/0.dev/nf4_science/rnaseq/</loc>
@@ -2648,15 +2659,26 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/01_pipeline/"/>
     </url>
     <url>
-        <loc>https://training.nextflow.io/0.dev/pt/nf4_science/metagenomics/02_multi-sample/</loc>
+        <loc>https://training.nextflow.io/0.dev/pt/nf4_science/metagenomics/02_single-sample/</loc>
         <lastmod>2025-11-04</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.dev/pt/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/02_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.dev/pt/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/02_single-sample/"/>
+    </url>
+    <url>
+        <loc>https://training.nextflow.io/0.dev/pt/nf4_science/metagenomics/03_multi-sample/</loc>
+        <lastmod>2025-11-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.dev/pt/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/03_multi-sample/"/>
     </url>
     <url>
         <loc>https://training.nextflow.io/0.dev/pt/nf4_science/rnaseq/</loc>
@@ -4254,15 +4276,26 @@
         <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/01_pipeline/"/>
     </url>
     <url>
-        <loc>https://training.nextflow.io/0.dev/es/nf4_science/metagenomics/02_multi-sample/</loc>
+        <loc>https://training.nextflow.io/0.dev/es/nf4_science/metagenomics/02_single-sample/</loc>
         <lastmod>2025-11-04</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.dev/es/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/02_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.dev/es/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/02_single-sample/"/>
+    </url>
+    <url>
+        <loc>https://training.nextflow.io/0.dev/es/nf4_science/metagenomics/03_multi-sample/</loc>
+        <lastmod>2025-11-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.dev/es/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/03_multi-sample/"/>
     </url>
     <url>
         <loc>https://training.nextflow.io/0.dev/es/nf4_science/rnaseq/</loc>
@@ -5867,15 +5900,26 @@
         <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/01_pipeline/"/>
     </url>
     <url>
-        <loc>https://training.nextflow.io/0.dev/fr/nf4_science/metagenomics/02_multi-sample/</loc>
+        <loc>https://training.nextflow.io/0.dev/fr/nf4_science/metagenomics/02_single-sample/</loc>
         <lastmod>2025-11-04</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.dev/fr/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/02_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.dev/fr/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/02_single-sample/"/>
+    </url>
+    <url>
+        <loc>https://training.nextflow.io/0.dev/fr/nf4_science/metagenomics/03_multi-sample/</loc>
+        <lastmod>2025-11-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.dev/fr/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/03_multi-sample/"/>
     </url>
     <url>
         <loc>https://training.nextflow.io/0.dev/fr/nf4_science/rnaseq/</loc>
@@ -7473,15 +7517,26 @@
         <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/01_pipeline/"/>
     </url>
     <url>
-        <loc>https://training.nextflow.io/0.dev/it/nf4_science/metagenomics/02_multi-sample/</loc>
+        <loc>https://training.nextflow.io/0.dev/it/nf4_science/metagenomics/02_single-sample/</loc>
         <lastmod>2025-11-04</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.dev/it/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/02_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.dev/it/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/02_single-sample/"/>
+    </url>
+    <url>
+        <loc>https://training.nextflow.io/0.dev/it/nf4_science/metagenomics/03_multi-sample/</loc>
+        <lastmod>2025-11-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.dev/it/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.devko/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/03_multi-sample/"/>
     </url>
     <url>
         <loc>https://training.nextflow.io/0.dev/it/nf4_science/rnaseq/</loc>
@@ -9079,15 +9134,26 @@
         <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/01_pipeline/"/>
     </url>
     <url>
-        <loc>https://training.nextflow.io/0.dev/ko/nf4_science/metagenomics/02_multi-sample/</loc>
+        <loc>https://training.nextflow.io/0.dev/ko/nf4_science/metagenomics/02_single-sample/</loc>
         <lastmod>2025-11-04</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.dev/ko/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/02_multi-sample/"/>
-        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/02_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.dev/ko/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/02_single-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/02_single-sample/"/>
+    </url>
+    <url>
+        <loc>https://training.nextflow.io/0.dev/ko/nf4_science/metagenomics/03_multi-sample/</loc>
+        <lastmod>2025-11-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://training.nextflow.io/0.dev/ko/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://training.nextflow.io/0.devnf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://training.nextflow.io/0.deves/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://training.nextflow.io/0.devfr/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://training.nextflow.io/0.devit/nf4_science/metagenomics/03_multi-sample/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://training.nextflow.io/0.devpt/nf4_science/metagenomics/03_multi-sample/"/>
     </url>
     <url>
         <loc>https://training.nextflow.io/0.dev/ko/nf4_science/rnaseq/</loc>
