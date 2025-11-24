@@ -4617,7 +4617,7 @@ Nonetheless, one of the most powerful capabilities by Nextflow is its native par
 You can think of this as a sort of "integrated <em>for</em> loop" that will process all the samples in parallel in a single run without the need of re-running the pipeline.</p>
 <p>To achieve this purpose, there are two possibilities:</p>
 <ul>
-<li>The use of wildcards in the input (this can be tricky and requires to take into account particular folder structures).</li>
+<li>The use of wildcards in the input (this can be tricky and requires taking into account particular folder structures).</li>
 <li>Create a file that points out to the sample files regardless of their location in the file system.</li>
 </ul>
 <p>In this course, we will target the second input option, but you are welcome to explore how you can use the first option by checking out the <a href="https://www.nextflow.io/docs/latest/working-with-files.html">Nextflow documentation</a>.</p>
@@ -4657,7 +4657,7 @@ So let's include an additional parameter in the <code>nextflow.config</code> fil
 <p>This modified declaration states that if we use the parameter <code>--reads</code> when we invoke the <code>nextflow run main.nf</code>, the <em>reads</em> channel will be created using only the path to paired-end files.
 Otherwise, we must include the parameter <code>--sheet_csv</code> with the corresponding file containing the sample information.</p>
 <p>Being so, it is necessary to use one of the two forms of input; if we use both at the same time, the <code>--reads</code> will predominate or if none of them is indicated, the pipeline will fail.
-Do not worry now for the way in which channel is created using the <code>.csv</code> file, this declaration is quite stantard and you can just copy and paste for other pipelines in which you would like to use it; however, you can learn more about this <a href="https://nextflow-io.github.io/patterns/process-per-csv-record/">here</a>.</p>
+Do not worry now for the way in which channel is created using the <code>.csv</code> file, this declaration is quite standard and you can just copy and paste for other pipelines in which you would like to use it; however, you can learn more about this <a href="https://nextflow-io.github.io/patterns/process-per-csv-record/">here</a>.</p>
 <p>Now, we would be ready to re-run the pipeline to process all the samples in a single call.
 Notwithstanding, the inclusion of additional samples has the advantage that we can expand the analysis to estimate β-diversity and compare them to extract important insights.</p>
 <hr />
@@ -4717,14 +4717,14 @@ Being so, we will include these processes and modify the workflow execution to a
 <a id="__codelineno-5-30" name="__codelineno-5-30"></a><span class="w">		    </span><span class="n">KRAKEN_BIOM</span><span class="o">(</span><span class="n">BRACKEN</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">collect</span><span class="o">())</span>
 <a id="__codelineno-5-31" name="__codelineno-5-31"></a><span class="w">		</span><span class="o">}</span>
 </code></pre></div></td></tr></table></div>
-<p>Here, you can see that we have added the operator <em>collect()</em> to capture all the output files from <code>BRACKEN</code>, and this is happening only if we are using as input <code>--sheet_csv</code>.
-This operator is going to return a list of the elements specified in the output of the process (<code>BRACKEN</code>), and, for instance, we are interested in each "second" (indices 1,4,7...) element of the list to run the <em>kraken-biom</em> command; this is the reason why within the <code>script</code> statement in <code>kraken_biom.nf</code> we have incluced two codelines to obtain the paths to these files.
+<p>Here, you can see that we have added the operator <em>collect()</em> to capture all the output files from <code>BRACKEN</code>, and this is happening only if we are using <code>--sheet_csv</code> as input.
+This operator is going to return a list of the elements specified in the output of the process (<code>BRACKEN</code>), and, for instance, we are interested in each "second" (indices 1,4,7...) element of the list to run the <em>kraken-biom</em> command; this is the reason why within the <code>script</code> statement in <code>kraken_biom.nf</code> we have included two codelines to obtain the paths to these files.
 If this is not entirely clear, please check the <a href="https://www.nextflow.io/docs/latest/reference/operator.html#collect">Nextflow documentation</a>.</p>
 <h3 id="22-phyloseq">2.2. Phyloseq<a class="headerlink" href="#22-phyloseq" title="Permanent link">&para;</a></h3>
 <h4 id="221-including-a-customized-script">2.2.1. Including a customized script<a class="headerlink" href="#221-including-a-customized-script" title="Permanent link">&para;</a></h4>
 <p>We are at the last step of the pipeline execution, and now we need to process the <code>*.biom</code> file by transforming it into a Phyloseq object, which is easier to use, more intuitive to understand, and is equipped with multiple tools and methods to plot.
-Another amazing feature by Nextflow is the possibility to run the so-called <em>Scripts à la carte</em>, which means that a process does not necessarily requires an external tool to execute, and hence you can develop your own analysis with customized scripts, i.e., R or Python.
-Here, we will run an R script inside the module <code>knit_phyloseq.nf</code> to create and process the Phyloseq object taking as input the ouput from <code>kraken_biom.nf</code>:</p>
+Another amazing feature by Nextflow is the possibility to run the so-called <em>Scripts à la carte</em>, which means that a process does not necessarily require an external tool to execute, and hence you can develop your own analysis with customized scripts, i.e., R or Python.
+Here, we will run an R script inside the module <code>knit_phyloseq.nf</code> to create and process the Phyloseq object taking as input the output from <code>kraken_biom.nf</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">modules/kraken_biom.nf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
@@ -4765,10 +4765,10 @@ Here, we will run an R script inside the module <code>knit_phyloseq.nf</code> to
 <a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="s2">    &quot;&quot;&quot;</span>
 <a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="o">}</span>
 </code></pre></div></td></tr></table></div>
-<p>As you can see, we are declaring some variables both in Nextflow and bash to able to call the script.
+<p>As you can see, we are declaring some variables both in Nextflow and bash to be able to call the script.
 This is a special case since this type of scripts can be stored in the <strong>bin</strong> directory for Nextflow to find them directly.
-Nevertheless, as we are not "running the script" directly but we are calling <code>Rscript</code> to render a final <code>*.html</code> report, Nextflow is not able to automatically find the customized script nor detect when report is rendered.
-As a result the ouput from this process is just a standard/command-line ouput, and we have to include an additional parameter in the <code>nextflow.config</code> file:</p>
+Nevertheless, as we are not "running the script" directly but we are calling <code>Rscript</code> to render a final <code>*.html</code> report, Nextflow is not able to automatically find the customized script nor detect when the report is rendered.
+As a result the output from this process is just a standard/command-line output, and we have to include an additional parameter in the <code>nextflow.config</code> file:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">nextflow.config</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">    </span><span class="n">report</span><span class="w">                             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/workspaces/training/nf4-science/metagenomics/bin/report.Rmd&quot;</span>
 </code></pre></div></td></tr></table></div>
 <p>In addition, please notice the <code>container</code> used for the <code>KNIT_PHYLOSEQ</code>, which is combination of multiple packages required to render the <code>*.html</code> report.
@@ -4811,12 +4811,12 @@ This is possible thanks to an awesome tool called <a href="https://seqera.io/con
 <a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="go">[d0/deccc9] kraken2Flow:KNIT_PHYLOSEQ (knit_phyloseq)  [100%] 1 of 1 ✔</span>
 </code></pre></div>
 <p>Keep in mind that since the execution is in parallel, the order in which the samples are processed is random and the order in which <code>sample ids</code> appear will differ among executions.
-Also, during while the pipeline is running you will see that <code>KRAKEN_BIOM</code>, and hence <code>KNIT_PHYLOSEQ</code>, will not be triggered until all the samples are processed by the previous processes.</p>
+Also, while the pipeline is running you will see that <code>KRAKEN_BIOM</code>, and hence <code>KNIT_PHYLOSEQ</code>, will not be triggered until all the samples are processed by the previous processes.</p>
 <p>Finally, inside the <strong>output</strong> directory, you will see multiple folders with the exact <code>sample ids</code>, and within these all the output files, including the files to visualize the Krona plots.
 Likewise, in the <strong>output</strong> folder you will see the file <code>report.html</code> which is ready to be opened and explored. It's your time to analyze it!</p>
 <hr />
 <h3 id="takeaway">Takeaway<a class="headerlink" href="#takeaway" title="Permanent link">&para;</a></h3>
-<p>You just learnt how control workflow execution by including conditionals and operators, process multiple samples simultaneously and running a customized script to perform a metagenomics data analysis at read level.</p>
+<p>You just learnt how to control workflow execution by including conditionals and operators, processing multiple samples simultaneously and running a customized script to perform a metagenomics data analysis at read level.</p>
 <h3 id="whats-next">What's next?<a class="headerlink" href="#whats-next" title="Permanent link">&para;</a></h3>
 <p>Great! You are well equipped now to start developing your own pipelines.</p>
 
